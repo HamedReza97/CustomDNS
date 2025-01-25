@@ -29,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QShortcut *delShortcut = new QShortcut(QKeySequence(Qt::Key_Backspace), ui->lstDns);
 
+    //Delete DNS rows from listview
     connect(delShortcut, &QShortcut::activated, [this]() {
         QListWidgetItem *item = ui->lstDns->currentItem();
         if (item) {
@@ -163,6 +164,9 @@ void MainWindow::clearDnsServersForInterface()
 void MainWindow::on_btnClearDns_pressed()
 {
     clearDnsServersForInterface();
+    ui->edtDns->clear();
+    ui->lstDns->clear();
+    ui->cbDns->setCurrentIndex(0);
 }
 
 void MainWindow::updateDnsServers(const QString dns)
